@@ -1,19 +1,61 @@
 // Variabili
 $borders: 1px solid black;
 
-//Mixin
-@mixin cell {
+//modal
+.modal {
+  display: block;
+  position: fixed;
+  z-index: 1;
   width: 100%;
   height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+  height: 70%;
+  width: 40%;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 25px;
+}
+
+.boxes {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.box-x {
+  padding: 10px;
+  margin: 10px;
+  border: 1px solid black;
+  aspect-ratio: 1/1;
+  border-radius: 25px;
+}
+
+.box-o {
+  padding: 10px;
+  margin: 10px;
+  border: 1px solid black;
+  border-radius: 25px;
 }
 
 //game board
 .game-area {
   min-height: 100vh;
-  @include cell();
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 500%;
 }
 .board {
   display: grid;
@@ -23,43 +65,41 @@ $borders: 1px solid black;
   height: 30%;
   aspect-ratio: 1/1;
   box-sizing: border-box;
+  .square {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
   .cell1 {
-    @include cell();
     border-right: $borders;
     border-bottom: $borders;
   }
   .cell2 {
-    @include cell();
     border-bottom: $borders;
   }
   .cell3 {
-    @include cell();
     border-left: $borders;
     border-bottom: $borders;
   }
   .cell4 {
-    @include cell();
     border-right: $borders;
     border-bottom: $borders;
   }
   .cell5 {
-    @include cell();
     border-bottom: $borders;
   }
   .cell6 {
-    @include cell();
     border-left: $borders;
     border-bottom: $borders;
   }
   .cell7 {
-    @include cell();
     border-right: $borders;
   }
   .cell8 {
-    @include cell();
   }
   .cell9 {
-    @include cell();
     border-left: $borders;
   }
 }
