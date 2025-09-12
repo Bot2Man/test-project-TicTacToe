@@ -11,6 +11,7 @@ let pcSymbol;
 function startGame(symbol) {
   for (let i = 0; i < choices.length; i++) {
     let chosen = choices[i];
+    chosen.onclick = playGame;
   }
 }
 
