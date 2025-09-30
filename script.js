@@ -33,4 +33,10 @@ squareO.addEventListener("click", function () {
 });
 
 //gameplay
-function playGame() {}
+function playGame() {
+  if (this.innerHTML === "") {
+    console.log("empty");
+  } else {
+    console.log("there is already a symbol");
+  }
+}
