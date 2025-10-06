@@ -4,17 +4,48 @@ const squareO = document.querySelector(".box-o");
 const modal = document.querySelector(".modal");
 const choices = document.querySelector(".choice");
 const gameSquares = document.querySelectorAll(".square");
-let currentTurn = squareX;
+let currentTurn;
 let gameOver = false;
 let boardStatus = ["", "", "", "", "", "", "", "", ""];
 let playerSymbol;
 let pcSymbol;
+let svgX = ` <svg width="100" height="100" viewBox="0 0 100 100">
+              <line
+                x1="10"
+                y1="10"
+                x2="90"
+                y2="90"
+                stroke="black"
+                stroke-width="10"
+              />
+              <line
+                x1="90"
+                y1="10"
+                x2="10"
+                y2="90"
+                stroke="black"
+                stroke-width="10"
+              />
+            </svg>`;
+
+let svgO = ` <svg width="100" height="100" viewBox="0 0 100 100">
+              <circle
+                cx="50"
+                cy="50"
+                r="40"
+                stroke="black"
+                stroke-width="10"
+                fill="none"
+              />
+            </svg>`;
 
 //gameplay
 function startGame() {
   for (let i = 0; i < gameSquares.length; i++) {
     let clickSquare = gameSquares[i];
-    clickSquare.onclick = playGame;
+    clickSquare.onclick = function () {
+      playGame(i);
+    };
   }
 }
 
@@ -33,10 +64,20 @@ squareO.addEventListener("click", function () {
 });
 
 //gameplay
-function playGame() {
-  if (this.innerHTML === "") {
-    console.log("empty");
+function playGame(i) {
+  if (currentTurn === playerSymbol) {
+    if (gameSquares[i].innerHTML === "") {
+      boardStatus[i] = playerSymbol;
+      if (playerSymbol === "x") {
+        gameSquares[i].innerHTML = svgX;
+      } else {
+        gameSquares[i].innerHTML = svgO;
+      }
+    } else {
+      console.log("there is already a symbol");
+    }
+    currentTurn = pcSymbol;
+    pcMove();
   } else {
-    console.log("there is already a symbol");
   }
 }
