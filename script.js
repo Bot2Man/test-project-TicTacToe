@@ -9,6 +9,7 @@ let gameOver = false;
 let boardStatus = ["", "", "", "", "", "", "", "", ""];
 let playerSymbol;
 let pcSymbol;
+let isProcessing = false;
 let svgX = ` <svg width="100" height="100" viewBox="0 0 100 100">
               <line
                 x1="10"
@@ -65,19 +66,35 @@ squareO.addEventListener("click", function () {
 
 //gameplay
 function playGame(i) {
-  if (currentTurn === playerSymbol) {
-    if (gameSquares[i].innerHTML === "") {
-      boardStatus[i] = playerSymbol;
-      if (playerSymbol === "x") {
-        gameSquares[i].innerHTML = svgX;
+  if (isProcessing === false) {
+    if (currentTurn === playerSymbol) {
+      if (gameSquares[i].innerHTML === "") {
+        boardStatus[i] = playerSymbol;
+        if (playerSymbol === "x") {
+          gameSquares[i].innerHTML = svgX;
+        } else {
+          gameSquares[i].innerHTML = svgO;
+        }
       } else {
-        gameSquares[i].innerHTML = svgO;
+        console.log("there is already a symbol");
       }
+      currentTurn = pcSymbol;
+      isProcessing = true;
+      pcMove();
     } else {
-      console.log("there is already a symbol");
+      return;
     }
-    currentTurn = pcSymbol;
-    pcMove();
   } else {
+    return;
+  }
+}
+
+//pc player actions
+function pcMove() {
+  if (gameOver === false) {
+    for (let i = 0; i < boardStatus.length; i++) {}
+    isProcessing = false;
+  } else {
+    return;
   }
 }
